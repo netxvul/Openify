@@ -2,6 +2,10 @@
 
 Openify 是一个 macOS 桌面工具，用于批量设置文件扩展名的默认打开应用。
 
+## 界面预览
+
+![Openify Screenshot](<screenshot/CleanShot 2026-03-28 at 17.22.10@2x.png>)
+
 ## 功能
 
 - 扫描本机应用（`/Applications`、`/System/Applications`、`~/Applications`）
