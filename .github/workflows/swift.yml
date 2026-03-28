@@ -23,7 +23,20 @@ jobs:
           -scheme Openify
           -destination 'platform=macOS'
           -configuration Debug
+          -derivedDataPath build/DerivedData
           CODE_SIGNING_ALLOWED=NO
           CODE_SIGNING_REQUIRED=NO
           CODE_SIGN_IDENTITY=""
           build
+
+      - name: Package Openify.app
+        run: |
+          mkdir -p build/artifacts
+          cp -R "build/DerivedData/Build/Products/Debug/Openify.app" "build/artifacts/Openify.app"
+          ditto -c -k --sequesterRsrc --keepParent "build/artifacts/Openify.app" "build/artifacts/Openify.app.zip"
+
+      - name: Upload Openify Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Openify-app
+          path: build/artifacts/Openify.app.zip
