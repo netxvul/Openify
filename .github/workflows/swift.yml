@@ -33,10 +33,10 @@ jobs:
         run: |
           mkdir -p build/artifacts
           cp -R "build/DerivedData/Build/Products/Debug/Openify.app" "build/artifacts/Openify.app"
-          ditto -c -k --sequesterRsrc --keepParent "build/artifacts/Openify.app" "build/artifacts/Openify.app.zip"
+          hdiutil create -volname "Openify" -srcfolder "build/artifacts/Openify.app" -ov -format UDZO "build/artifacts/Openify.dmg"
 
-      - name: Upload Openify Artifact
+      - name: Upload Openify DMG
         uses: actions/upload-artifact@v4
         with:
-          name: Openify-app
-          path: build/artifacts/Openify.app.zip
+          name: Openify-dmg
+          path: build/artifacts/Openify.dmg
